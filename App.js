@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList } from 'react-native';
 
+import Tarefa from '../AppTarefas/src/tarefa';
+
 import { FontAwesome } from '@expo/vector-icons';
 
 export default function App() {
@@ -38,6 +40,12 @@ export default function App() {
           <FontAwesome name="plus" size={24} color="#FFF" />
         </TouchableOpacity>
       </View>
+      
+      <FlatList
+      data={list}
+      keyExtractor={ (item) => item.key}
+      renderItem={ ({item}) => <Tarefa data={item} />}
+      />
     </View>
   );
 }

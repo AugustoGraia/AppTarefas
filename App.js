@@ -27,10 +27,10 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>TESTE</Text>
+      <Text style={styles.title}>Lista de Compras</Text>
       <View style={styles.containerInput}>
         <TextInput
-        placeholder='Digite sua tarefas'
+        placeholder='Digite seu produto'
         style={styles.input}
         value={tarefa}
         onChangeText={ (text) => setTarefa(text)}
@@ -42,6 +42,7 @@ export default function App() {
       </View>
       
       <FlatList
+      style={styles.FlatList}
       data={list}
       keyExtractor={ (item) => item.key}
       renderItem={ ({item}) => <Tarefa data={item} />}
@@ -87,6 +88,13 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  FlatList:{
+    flex: 1,
+    backgroundColor: '#fff',
+    paddingStart: '4%',
+    paddingEnd: '4%',
   }
+
 
 });

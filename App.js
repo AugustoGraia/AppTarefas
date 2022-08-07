@@ -9,21 +9,31 @@ export default function App() {
 
   const [ tarefa, setTarefa ] = useState('');
 
-  const [ list, setList] = useState([
-    {
-      key: '1',
-      item: 'Compras'
-    },
-    {
-      key: '2',
-      item: 'React Native'
-    },
-]);
+  const [ list, setList] = useState([ ]);
 
   function handleAdd() {
-    alert(tarefa)
+    
+    if(tarefa === ''){
+      return;
+    }
+
+    const data = {
+      key: Date.now(),
+      item: tarefa
+    }
+
+    setList(velhoArray => [data, ...velhoArray]);
+
+    setTarefa();
   }
-  
+  //Devolve todas as tarefas que são diferentes do parametro
+  function handleDelete(item){
+    let filtroItem = list.filter((tarefa) => {
+      return (tarefa.item !== item)
+    })
+
+    setList(filtroItem);
+  }
 
   return (
     <View style={styles.container}>
@@ -45,7 +55,7 @@ export default function App() {
       style={styles.FlatList}
       data={list}
       keyExtractor={ (item) => item.key}
-      renderItem={ ({item}) => <Tarefa data={item} />}
+      renderItem={ ({item}) => <Tarefa data={item} deleteItem={ () => handleDelete(item.item)} />}
       />
     </View>
   );
